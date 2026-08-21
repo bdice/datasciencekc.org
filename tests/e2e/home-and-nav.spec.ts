@@ -14,6 +14,15 @@ test("home page smoke test", async ({ page }) => {
   await expect(page.locator('iframe[src*="youtube.com"]')).toBeAttached();
 });
 
+test("expired announcement is hidden from the home page", async ({ page }) => {
+  await page.goto("http://127.0.0.1:1314/");
+
+  await expect(
+    page.getByText("Connecting, Learning, and Growing Together in the Heart of America")
+  ).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "Announcements" })).toHaveCount(0);
+});
+
 test("mobile nav opens, shows links, and closes", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
