@@ -70,7 +70,20 @@
 
 {{ $recentPosts := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
 {{ $recentPosts = $recentPosts.ByDate.Reverse }}
-{{ if or (gt (len $upcomingEvents) 0) (gt (len $recentPosts) 0) }}
+{{ $announcementPosts := first 1 $recentPosts }}
+{{ $pinnedPosts := where $recentPosts "Params.pinHome" true }}
+{{ if gt (len $pinnedPosts) 0 }}
+  {{ $announcementPosts = first 1 $pinnedPosts.ByDate.Reverse }}
+{{ end }}
+{{ $showAnnouncement := gt (len $announcementPosts) 0 }}
+{{ if $showAnnouncement }}
+  {{ $announcementPost := index $announcementPosts 0 }}
+  {{ with index $announcementPost.Params "hide-from-front-page-after-date" }}
+    {{ $hideAfter := (time.AsTime . "America/Chicago").AddDate 0 0 1 }}
+    {{ $showAnnouncement = now.Before $hideAfter }}
+  {{ end }}
+{{ end }}
+{{ if or (gt (len $upcomingEvents) 0) $showAnnouncement }}
   <section class="mt-6 mb-12 grid grid-cols-1 sm:grid-cols-2 gap-3">
     {{ if gt (len $upcomingEvents) 0 }}
       {{ $nextEvent := index $upcomingEvents 0 }}
@@ -94,12 +107,8 @@
       </div>
     {{ end }}
 
-    {{ if gt (len $recentPosts) 0 }}
-      {{ $announcementPost := index $recentPosts 0 }}
-      {{ $pinnedPosts := where $recentPosts "Params.pinHome" true }}
-      {{ if gt (len $pinnedPosts) 0 }}
-        {{ $announcementPost = index ($pinnedPosts.ByDate.Reverse) 0 }}
-      {{ end }}
+    {{ if $showAnnouncement }}
+      {{ $announcementPost := index $announcementPosts 0 }}
       <div class="flex flex-col">
         <h2 class="m-0 mb-2 text-sm font-semibold uppercase tracking-wide text-primary-700 dark:text-neutral-200">Announcements</h2>
         <div class="h-full flex flex-col rounded-lg border border-primary-500 p-4 sm:p-5 bg-neutral-50 dark:bg-neutral-800/60">
