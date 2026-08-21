@@ -47,6 +47,13 @@ test("home nav link from posts returns to home page", async ({ page }) => {
   await expect(page).toHaveURL("/");
 });
 
+test("2026-2027 event schedule post loads", async ({ page }) => {
+  await page.goto("/posts/2026-08-21-save-the-dates-2026-2027/");
+  await expect(page).toHaveTitle(/Save the Dates: Data Science KC's 2026-2027 Season/i);
+  await expect(page.getByRole("heading", { name: "2026-2027 Tentative Schedule" })).toBeVisible();
+  await expect(page.getByRole("link", { name: /RSVP for the September event/i })).toBeVisible();
+});
+
 test("call for speakers post loads", async ({ page }) => {
   await page.goto("/posts/2026-02-22-startup-showcase/");
   await expect(page).toHaveTitle(/Call for Speakers: Startup Showcase \(May 14, 2026\)/i);
