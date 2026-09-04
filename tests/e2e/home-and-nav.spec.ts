@@ -12,6 +12,15 @@ test("home page smoke test", async ({ page }) => {
   await expect(page.getByRole("link", { name: "Announcements" })).toBeVisible();
   await expect(page.getByRole("link", { name: /See all events on Meetup/i })).toBeVisible();
   await expect(page.locator('iframe[src*="youtube.com"]')).toBeAttached();
+
+  const currentSponsors = page
+    .getByText("2026-2027 Sponsors:")
+    .locator("xpath=following-sibling::ul[1]");
+  await expect(currentSponsors.locator("li")).toHaveText([
+    "C2FO — Partner",
+    "Burns & McDonnell"
+  ]);
+  await expect(page.getByText("Past sponsors include:")).toBeVisible();
 });
 
 test("expired announcement is hidden from the home page", async ({ page }) => {

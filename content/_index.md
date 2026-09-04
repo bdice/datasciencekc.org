@@ -125,12 +125,15 @@ Our partners include:
 - [Keystone Colab](https://www.keystonedistrict.org/)
 - [KC Digital Drive](https://www.kcdigitaldrive.org/)
 
-Recent sponsors include:
+2026-2027 Sponsors:
+
+- **[C2FO](https://www.c2fo.com/) — Partner**
+- [Burns & McDonnell](https://www.burnsmcd.com/)
+
+Past sponsors include:
 
 - [Americo](https://www.americo.com/)
 - [Black & Veatch](https://www.bv.com/)
-- [Burns & McDonnell](https://www.burnsmcd.com/)
-- [C2FO](https://www.c2fo.com/)
 - [Creative Planning](https://www.creativeplanning.com/)
 - [Ecco Select](https://www.eccoselect.com/)
 - [In the Box Consulting](https://intheboxconsult.wordpress.com/about/)
