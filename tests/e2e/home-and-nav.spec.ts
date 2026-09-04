@@ -18,7 +18,7 @@ test("home page smoke test", async ({ page }) => {
     .locator("xpath=following-sibling::ul[1]");
   await expect(currentSponsors.locator("li")).toHaveText([
     "C2FO — Partner",
-    "Burns & McDonnell"
+    "Burns & McDonnell — Partner"
   ]);
   await expect(page.getByText("Past sponsors include:")).toBeVisible();
 });

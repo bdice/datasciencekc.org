@@ -128,7 +128,7 @@ Our partners include:
 2026-2027 Sponsors:
 
 - **[C2FO](https://www.c2fo.com/) — Partner**
-- [Burns & McDonnell](https://www.burnsmcd.com/)
+- **[Burns & McDonnell](https://www.burnsmcd.com/) — Partner**
 
 Past sponsors include:
 
